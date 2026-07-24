@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  base: "/Milan-Algama/",
+  base: "/Portfolio-BackendConnection/",
   server: {
     proxy: {
       "/projects": "http://localhost:5001",
