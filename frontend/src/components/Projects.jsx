@@ -29,6 +29,7 @@ function Projects() {
 
         setProjects(dynamicProjects);
       } catch (error) {
+        console.error(error);
         setProjects([]);
       } finally {
         setLoading(false);

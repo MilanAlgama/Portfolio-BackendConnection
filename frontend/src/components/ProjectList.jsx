@@ -16,7 +16,8 @@ function ProjectList() {
         setLoading(true);
         const data = await getProjects();
         setProjects(data);
-      } catch (err) {
+      } catch (error) {
+        console.error(error);
         setError("Unable to load projects from the backend.");
       } finally {
         setLoading(false);

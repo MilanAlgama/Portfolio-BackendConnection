@@ -14,7 +14,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT || 5001;
 
 //connectDB();
 
@@ -31,8 +31,6 @@ app.use("/projects", projectRoutes);
 
 app.use(errorHandler);
 
-
-
 async function startServer() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
@@ -41,12 +39,10 @@ async function startServer() {
     app.listen(PORT, () => {
       console.log(`Listening on PORT ${PORT}`);
       console.log();
-      
     });
   } catch (error) {
     console.log(`An error occured: ${error}`);
     process.exit(1);
-    
   }
 }
 startServer();

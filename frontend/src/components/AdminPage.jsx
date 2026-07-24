@@ -30,7 +30,8 @@ function AdminPage() {
       const data = await getProjects();
       setProjects(data);
       setError("");
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       setError("Unable to load projects from the backend.");
     } finally {
       setLoading(false);
@@ -38,7 +39,21 @@ function AdminPage() {
   };
 
   useEffect(() => {
-    fetchProjects();
+    const loadProjects = async () => {
+      try {
+        setLoading(true);
+        const data = await getProjects();
+        setProjects(data);
+        setError("");
+      } catch (error) {
+        console.error(error);
+        setError("Unable to load projects from the backend.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProjects();
   }, []);
 
   const handleChange = (event) => {
@@ -84,7 +99,8 @@ function AdminPage() {
 
       resetForm();
       await fetchProjects();
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       setError("The project could not be saved.");
     } finally {
       setSubmitting(false);
@@ -107,7 +123,8 @@ function AdminPage() {
     try {
       await deleteProject(id);
       await fetchProjects();
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       setError("The project could not be deleted.");
     }
   };
